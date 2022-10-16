@@ -153,9 +153,166 @@
 
 // Given a string, detect whether or not it is a pangram. Return True if it is, False if not. Ignore numbers and punctuation.
 
-function isPangram(string) {
-  string = string.toLowerCase();
-  return "abcdefghijklmnopqrstuvwxyz".split("").every(function (x) {
-    return string.indexOf(x) !== -1;
-  });
-}
+// function isPangram(string) {
+//   string = string.toLowerCase();
+//   return "abcdefghijklmnopqrstuvwxyz".split("").every(function (x) {
+//     return string.indexOf(x) !== -1;
+//   });
+// }
+// function basicOp(operation, value1, value2) {
+//   switch (operation) {
+//     case "+":
+//       return value1 + value2;
+//     case "-":
+//       return value1 - value2;
+//     case "*":
+//       return value1 * value2;
+//     case "/":
+//       return value1 / value2;
+//     default:
+//       return "Operation must be one of + - * /";
+//   }
+// }
+
+// console.log(basicOp("+", 4, 7));
+// console.log(basicOp("-", 15, 18));
+// console.log(basicOp("*", 2, 3));
+// console.log(basicOp("/", 49, 7));
+
+// Given an array of integers, find the one that appears an odd number of times.
+
+// There will always be only one integer that appears an odd number of times.
+// function findOdd(A) {
+//   let obj = {};
+
+//   for (i = 0; i < A.length; i += 1) {
+//     obj[A[i]];
+//     obj[A[i]] = 1;
+//     for (j = i + 1; j < A.length; j += 1) {
+//       if (A[i] === A[j]) {
+//         obj[A[i]] += 1;
+//         A.splice(j, 1);
+//         j -= 1;
+//       }
+//     }
+//   }
+//   //happy coding!
+//   const keys = Object.keys(obj);
+//   for (let key of keys) {
+//     if (obj[key] % 2 === 1) {
+//       return Number(key);
+//     }
+//   }
+// }
+
+// //другой вариант решения в одну строку)))
+// const findOdd = (xs) => xs.reduce((a, b) => a ^ b);
+
+// console.log(findOdd([20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5]));
+// function countBy(x, n) {
+//   let z = [];
+//   let total = x;
+//   for (let i = 0; i < n; i += 1) {
+//     z.push(total);
+//     total += x;
+//   }
+//   return z;
+// }
+// console.log(countBy(1, 10));
+// console.log(countBy(2, 5));
+// const arr = [20, 37, 20, 21];
+
+// function deleteNth(arr, n) {
+//   let obj = {};
+
+//   for (i = 0; i < arr.length; i += 1) {
+//     obj[arr[i]];
+//     obj[arr[i]] = 1;
+//     for (j = i + 1; j < arr.length; j += 1) {
+//       if (arr[i] === arr[j]) {
+//         obj[arr[i]] += 1;
+
+//         if (obj[arr[i]] > n) {
+//           arr.splice(j, 1);
+//           j -= 1;
+//         }
+//       }
+//     }
+//   }
+
+//   return arr;
+//   // ...
+// }
+// // 2вариант решения
+// function deleteNth(arr, x) {
+//   var cache = {};
+//   return arr.filter(function (n) {
+//     cache[n] = (cache[n] || 0) + 1;
+//     return cache[n] <= x;
+//   });
+// }
+// // 3вариант решения
+// const deleteNth = (a, x) => {
+// 	let m = {};
+// 	return a.filter( v => (m[v] = m[v]+1||1) <= x );
+//  }
+
+// console.log(deleteNth([20, 37, 20, 21], 1));
+// console.log(deleteNth([1, 1, 3, 3, 7, 2, 2, 2, 2], 3));
+
+//Построить пирамиду из звездоччек увеличивающуюся в геометр прогрессии
+// function towerBuilder(nFloors) {
+//   let arr = [];
+//   let str = "";
+//   const number = nFloors * 2 - 1;
+//   //   " ".repeat((nFloors - 1) / 2) + "*" + " ".repeat((nFloors - 1) / 2)
+//   for (let i = 0; i < nFloors; i += 1) {
+//     str =
+//       " ".repeat((number - (i * 2 + 1)) / 2) +
+//       "*".repeat(i * 2 + 1) +
+//       " ".repeat((number - (i * 2 + 1)) / 2);
+//     arr.push(str);
+//   }
+//   return arr;
+//   // build here
+// }
+
+// console.log(towerBuilder(3));
+// console.log(towerBuilder(5));
+// function sortArray(array) {
+//   let arr = [];
+//   let arr1 = array.filter((elem) => elem % 2 !== 0);
+//   for (let i = 0; i < array.length; i += 1) {
+//     if (array[i] % 2 === 0) {
+//       arr.push(array[i]);
+//     } else {
+//       const elem = Math.min(...arr1);
+//       console.log(elem);
+//       arr.push(elem);
+//       arr1.splice(arr1.indexOf(elem), 1);
+//     }
+//   }
+//   return arr;
+//   // Return a sorted array.
+// }
+
+// function sortArray(array) {
+//   const odd = array.filter((x) => x % 2).sort((a, b) => a - b);
+//   return array.map((x) => (x % 2 ? odd.shift() : x));
+// }
+
+// console.log(sortArray([5, 3, 2, 8, 1, 4]));
+// console.log(sortArray([-1, 3]));
+// console.log(Infinity % 2 === 0);
+// console.log(Infinity % 2 === 1);
+
+String.prototype.toJadenCase = function () {
+  const arr = this.split(" ");
+  console.log(arr);
+  return arr
+    .map((elem) => elem.replace(elem[0], elem[0].toUpperCase()))
+    .join(" ");
+  //...
+};
+const str = "How can mirrors be real if our eyes aren't real";
+console.log(str.toJadenCase());
