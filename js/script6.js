@@ -50,64 +50,73 @@
 // console.log(names);
 // Bearer 3sru3q0Sisxo4TsZOe23
 
-const BASE_URL = "https://the-one-api.dev/v2";
-const containerEl = document.querySelector(".container");
-const sentinelEl = document.querySelector(".js-sentinel");
-let page = 1;
-let options = {
-  root: null,
-  rootMargin: "200px",
-  threshold: 1.0,
-};
+// const BASE_URL = "https://the-one-api.dev/v2";
+// const containerEl = document.querySelector(".container");
+// const sentinelEl = document.querySelector(".js-sentinel");
+// let page = 1;
+// let options = {
+//   root: null,
+//   rootMargin: "200px",
+//   threshold: 1.0,
+// };
 
-let observer = new IntersectionObserver(onScroll, options);
+// let observer = new IntersectionObserver(onScroll, options);
 
-function onScroll(entries) {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      page += 1;
-      getCharacter(page)
-        .then((data) => {
-          containerEl.insertAdjacentHTML(
-            "beforeend",
-            data.docs.map(createMarkup).join("")
-          );
+// function onScroll(entries) {
+//   entries.forEach((entry) => {
+//     if (entry.isIntersecting) {
+//       page += 1;
+//       getCharacter(page)
+//         .then((data) => {
+//           containerEl.insertAdjacentHTML(
+//             "beforeend",
+//             data.docs.map(createMarkup).join("")
+//           );
 
-          if (data.page === data.pages) {
-            observer.unobserve(sentinelEl);
-          }
-        })
-        .catch((error) => console.log(error));
-    }
-  });
+//           if (data.page === data.pages) {
+//             observer.unobserve(sentinelEl);
+//           }
+//         })
+//         .catch((error) => console.log(error));
+//     }
+//   });
+// }
+
+// const getCharacter = async function (page = 1) {
+//   const options = {
+//     headers: {
+//       Authorization: "Bearer pWodRJdZ0s_ESpktoiHc",
+//     },
+//   };
+//   const response = await fetch(
+//     `${BASE_URL}/character?limit=300&page=${page}`,
+//     options
+//   );
+//   return await response.json();
+// };
+
+// getCharacter()
+//   .then((data) => {
+//     containerEl.insertAdjacentHTML(
+//       "beforeend",
+//       data.docs.map(createMarkup).join("")
+//     );
+//     observer.observe(sentinelEl);
+//   })
+//   .catch((error) => console.log(error));
+
+// function createMarkup({ name, race, gender }) {
+//   return `<li>
+// 	<p>Имя ${name}</p>
+// 	<p>Раса ${race}</p>
+// 	<p>Пол ${gender}</p></li>`;
+// }
+
+function noSpace(x) {
+  const newStr = x.replaceAll(" ", "");
+  return newStr;
 }
 
-const getCharacter = async function (page = 1) {
-  const options = {
-    headers: {
-      Authorization: "Bearer pWodRJdZ0s_ESpktoiHc",
-    },
-  };
-  const response = await fetch(
-    `${BASE_URL}/character?limit=300&page=${page}`,
-    options
-  );
-  return await response.json();
-};
-
-getCharacter()
-  .then((data) => {
-    containerEl.insertAdjacentHTML(
-      "beforeend",
-      data.docs.map(createMarkup).join("")
-    );
-    observer.observe(sentinelEl);
-  })
-  .catch((error) => console.log(error));
-
-function createMarkup({ name, race, gender }) {
-  return `<li>
-	<p>Имя ${name}</p>
-	<p>Раса ${race}</p>
-	<p>Пол ${gender}</p></li>`;
-}
+console.log(noSpace("8 j 8   mBliB8g  imjB8B8  jl  B"));
+console.log(noSpace("8 8 Bi fk8h B 8 BB8B B B  B888 c hl8 BhB fd"));
+console.log(noSpace("8aaaaa dddd r     "));
