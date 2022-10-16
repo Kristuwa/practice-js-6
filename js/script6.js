@@ -112,11 +112,50 @@
 // 	<p>Пол ${gender}</p></li>`;
 // }
 
-function noSpace(x) {
-  const newStr = x.replaceAll(" ", "");
-  return newStr;
-}
+// function noSpace(x) {
+//   const newStr = x.replaceAll(" ", "");
+//   return newStr;
+// }
 
-console.log(noSpace("8 j 8   mBliB8g  imjB8B8  jl  B"));
-console.log(noSpace("8 8 Bi fk8h B 8 BB8B B B  B888 c hl8 BhB fd"));
-console.log(noSpace("8aaaaa dddd r     "));
+// console.log(noSpace("8 j 8   mBliB8g  imjB8B8  jl  B"));
+// console.log(noSpace("8 8 Bi fk8h B 8 BB8B B B  B888 c hl8 BhB fd"));
+// console.log(noSpace("8aaaaa dddd r     "));
+
+// function isIsogram(str) {
+//   const arr = str.toLowerCase().split("");
+//   if (arr.length === 0) {
+//     return true;
+//   }
+//   let letter = arr[0];
+//   for (let i = 1; i < arr.length; i += 1) {
+//     if (letter === arr[i]) {
+//       return false;
+//     }
+//   }
+
+//   return true;
+//   //...
+// }
+
+// console.log(isIsogram("Dermatoglyphics"));
+// console.log(isIsogram("isogram"));
+// console.log(isIsogram("aba"));
+// console.log(isIsogram("moOse"));
+// console.log(isIsogram(""));
+
+// var uniqueInOrder = function (iterable) {
+//   return iterable.replace(/(.)\1+/g, "$1").split("");
+//   //your code here - remember iterable can be a string or an array
+// };
+
+// console.log(uniqueInOrder("AAAABBBCCDAABBB"));
+// A pangram is a sentence that contains every single letter of the alphabet at least once. For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the letters A-Z at least once (case is irrelevant).
+
+// Given a string, detect whether or not it is a pangram. Return True if it is, False if not. Ignore numbers and punctuation.
+
+function isPangram(string) {
+  string = string.toLowerCase();
+  return "abcdefghijklmnopqrstuvwxyz".split("").every(function (x) {
+    return string.indexOf(x) !== -1;
+  });
+}
