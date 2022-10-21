@@ -306,13 +306,55 @@
 // console.log(Infinity % 2 === 0);
 // console.log(Infinity % 2 === 1);
 
-String.prototype.toJadenCase = function () {
-  const arr = this.split(" ");
-  console.log(arr);
-  return arr
-    .map((elem) => elem.replace(elem[0], elem[0].toUpperCase()))
-    .join(" ");
-  //...
-};
-const str = "How can mirrors be real if our eyes aren't real";
-console.log(str.toJadenCase());
+// String.prototype.toJadenCase = function () {
+//   const arr = this.split(" ");
+//   console.log(arr);
+//   return arr
+//     .map((elem) => elem.replace(elem[0], elem[0].toUpperCase()))
+//     .join(" ");
+//   //...
+// };
+// const str = "How can mirrors be real if our eyes aren't real";
+// console.log(str.toJadenCase());
+
+// // Повертає true якщо рядок у першому елементі масиву містить усі літери рядка у другому елементі масиву.
+
+// // Наприклад, для ["hello", "Hello"] має повертати true тому що всі літери у другому рядку присутні й у першому, незважаючи на їх регістр.
+
+// // Аргументи ["hello", "hey"] мають повертати false, тому що рядок hello не містить літеру y.
+
+// // Зрештою, для ["Alien", "line"] має повертати true, тому що всі літери словаline присутні у слові Alien.
+
+// function mutation(arr) {
+// 	const arrNew1 = arr[0].toLowerCase().split((''));
+// 	const arrNew2 = arr[1].toLowerCase().split((''));
+// 	let total = 0;
+// 	console.log(arrNew1);
+// 	 console.log(arrNew2);
+// 	 for(let i=0;i<arrNew2.length; i+=1) {
+// 		if(arrNew1.includes(arrNew2[i])) {
+//   total+=1;
+// 		}
+// 	 }
+// 	 if(total===arrNew2.length){
+// 		return true;
+// 	 }
+// 	 return false;
+//   }
+
+//   console.log(mutation(["Alien", "line"]));
+// // Алгоритм Chunky Monkey
+// // Напишіть функцію, яка ділить масив (перший аргумент) у групи: довжина size (другий аргумент) і повертає їх у вигляді двовимірного масиву.
+// function chunkArrayInGroups(arr, size) {
+//   let arrNew = [];
+//   const length = Math.ceil(arr.length / size);
+//   console.log(length);
+//   //  console.log(arr.splice(0,2));
+//   //  console.log(arr.splice(0,2));
+//   for (let i = 1; i <= length; i += 1) {
+//     arrNew.push(arr.splice(0, size));
+//   }
+//   return arrNew;
+// }
+
+// console.log(chunkArrayInGroups([0, 1, 2, 3, 4, 5, 6], 3));
