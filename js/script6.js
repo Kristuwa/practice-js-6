@@ -538,3 +538,47 @@
 //  }
 
 //  console.log(getRating(watchList));
+
+//************************** */
+
+// // Різниця між двома масивами
+// // Порівняти два масиви і повернути новий масив з елементами, знайденими лише в одному з двох зазначених масивів, але не в обох. Іншими словами, повернути симетричну різницю двох масивів.
+
+// // Примітка: Ви можете повернути масив з його елементами в будь-якому порядку.
+// function diffArray(arr1, arr2) {
+//   const newArr = [];
+
+//   const unicElem = arr1.filter((elem) => !arr2.includes(elem));
+//   newArr.push(...unicElem);
+//   const unicElem1 = arr2.filter((elem) => !arr1.includes(elem));
+//   newArr.push(...unicElem1);
+
+//   return newArr;
+// }
+
+// console.log(
+//   diffArray(
+//     ["andesite", "grass", "dirt", "dead shrub"],
+//     ["andesite", "grass", "dirt", "dead shrub"]
+//   )
+// );
+
+//************************** */
+
+// Пошук і Видалення
+// Ви отримаєте початковий масив (перший аргумент у функції destroyer), а потім один або декілька аргументів. Видалити всі елементи з початкового масиву, які мають таке ж значення, що і ці аргументи.
+
+// Примітка: Потрібно використовувати об'єкт arguments.
+function destroyer(arr) {
+  console.log(arguments);
+  for (let i = 1; i < arguments.length; i += 1) {
+    if (arr.includes(arguments[i])) {
+      arr.splice(arr.indexOf(arguments[i]), 1);
+      i -= 1;
+    }
+  }
+
+  return arr;
+}
+console.log(destroyer([3, 5, 1, 2, 2], 2, 3, 5));
+console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
