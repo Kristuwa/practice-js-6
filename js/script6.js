@@ -565,20 +565,244 @@
 
 //************************** */
 
-// Пошук і Видалення
-// Ви отримаєте початковий масив (перший аргумент у функції destroyer), а потім один або декілька аргументів. Видалити всі елементи з початкового масиву, які мають таке ж значення, що і ці аргументи.
+// // Пошук і Видалення
+// // Ви отримаєте початковий масив (перший аргумент у функції destroyer), а потім один або декілька аргументів. Видалити всі елементи з початкового масиву, які мають таке ж значення, що і ці аргументи.
 
-// Примітка: Потрібно використовувати об'єкт arguments.
-function destroyer(arr) {
-  console.log(arguments);
-  for (let i = 1; i < arguments.length; i += 1) {
-    if (arr.includes(arguments[i])) {
-      arr.splice(arr.indexOf(arguments[i]), 1);
-      i -= 1;
-    }
-  }
+// // Примітка: Потрібно використовувати об'єкт arguments.
+// function destroyer(arr) {
+//   console.log(arguments);
+//   for (let i = 1; i < arguments.length; i += 1) {
+//     if (arr.includes(arguments[i])) {
+//       arr.splice(arr.indexOf(arguments[i]), 1);
+//       i -= 1;
+//     }
+//   }
 
-  return arr;
-}
-console.log(destroyer([3, 5, 1, 2, 2], 2, 3, 5));
-console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
+//   return arr;
+// }
+// console.log(destroyer([3, 5, 1, 2, 2], 2, 3, 5));
+// console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
+
+// //**************************** */
+// // Wherefore art thou
+// // Написати функцію, яка проглядає масив об'єктів (перший аргумент) і повертає масив усіх об'єктів, які мають однакові пари імен і значень (другий аргумент). Кожна пара імен та значень вихідного об'єкта повинна бути присутньою в об'єкті з колекції, якщо вона повинна бути включена в масив, що повертається.
+
+// // Наприклад, якщо перший аргумент [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], а другий аргумент { last: "Capulet" }, тоді потрібно повернути третій об'єкт з масиву (перший аргумент), тому що він містить назву і значення, які були передані як другий аргумент.
+// function whatIsInAName(collection, source) {
+//   const arr = [];
+//   // Змініть код лише під цим рядком
+//   collection.map((elem) => {
+//     const keys = Object.keys(elem);
+//     const keys1 = Object.keys(source);
+
+//     if (keys1.every((el) => keys.includes(el) && elem[el] === source[el])) {
+//       arr.push(elem);
+//     }
+//   });
+//   // Змініть код лише над цим рядком
+//   return arr;
+// }
+
+// console.log(
+//   whatIsInAName(
+//     [
+//       { first: "Romeo", last: "Montague" },
+//       { first: "Mercutio", last: null },
+//       { first: "Tybalt", last: "Capulet" },
+//     ],
+//     { last: "Capulet" }
+//   )
+// );
+// console.log(
+//   whatIsInAName(
+//     [{ apple: 1, bat: 2 }, { bat: 2 }, { apple: 1, bat: 2, cookie: 2 }],
+//     { apple: 1, bat: 2 }
+//   )
+// );
+
+//****************************** */
+// // Spinal Tap Case
+// // Перетворити рядок в spinal case. У spinal case усі-слова-в-нижньому-регістрі-і-розділені-тире
+// function spinalCase(str) {
+//   const arr = str.replaceAll("_", " ").split(/(?=[A-Z])/); //разделяем на массив по большой букве
+//   const arr1 = arr
+//     .join(" ")
+//     .split(" ")
+//     .filter((elem) => elem !== "");
+
+//   return arr1.join("-").toLowerCase();
+// }
+
+// console.log(spinalCase("This Is Spinal Tap"));
+// console.log(spinalCase("ThisIsSpinalTap"));
+// console.log(spinalCase("Teletubbies say Eh-oh"));
+// console.log(spinalCase("The_Andy_Griffith_Show"));
+
+//****************************** */
+// // Pig Latin
+// // Pig Latin - це спосіб шифрування англійських слів. Правила такі:
+
+// // - Якщо слово починається на приголосний звук, початкові приголосні переміщуються в кінець слова і додається ay.
+
+// // - Якщо слово починається на голосний звук, в кінці просто додається way.
+
+// // Перекласти даний рядок на Pig Latin. Необхідно вводити лише англійські слова в нижньому регістрі.
+// function translatePigLatin(str) {
+//   const vowels = "aeiou".split("");
+//   //   console.log(vowels);
+//   let arr = str.split("");
+//   const letter = arr.find((elem) => vowels.includes(elem));
+//   const index = str.indexOf(letter);
+//   //   console.log(str.indexOf(letter));
+//   if (index === 0) {
+//     return str + "way";
+//   } else if (index === -1) {
+//     return str + "ay";
+//   }
+//   return arr.slice(index).join("") + arr.slice(0, index).join("") + "ay";
+// }
+
+// console.log(translatePigLatin("consonant"));
+// console.log(translatePigLatin("algorithm"));
+// console.log(translatePigLatin("schwartz"));
+// console.log(translatePigLatin("eight"));
+// console.log(translatePigLatin("rhythm"));
+
+//****************************** */
+// // Пошук і Заміна
+// // Виконайте пошук і замініть речення на речення використовуючи дані аргументи та поверніть нове речення.
+
+// // Першим аргументом є речення, над яким потрібно виконати пошук і заміну.
+
+// // Другий аргумент - це слово, яке ви будете заміняти (до).
+
+// // Третій аргумент - це слово, на яке ви заміните другий аргумент (після).
+
+// // Примітка: Зберігайте регістр першого символу в оригінальному слові, коли ви замінюєте його. Наприклад, якщо ви хочете замінити слово Book словом dog, його слід замінювати таким чином Dog
+// function myReplace(str, before, after) {
+//   const arr = str.split(" ");
+//   const word = arr.find((elem) => elem === before);
+//   console.log(word);
+//   const index = arr.indexOf(word);
+//   if (word[0] === word[0].toUpperCase()) {
+//     after = after[0].toUpperCase() + after.slice(1);
+//   }
+//   if (word[0] === word[0].toLowerCase()) {
+//     after = after[0].toLowerCase() + after.slice(1);
+//   }
+//   //  console.log(word[0] === word[0].toUpperCase());
+//   arr.splice(index, 1, after);
+
+//   return arr.join(" ");
+// }
+
+// console.log(myReplace("He is Sleeping on the couch", "Sleeping", "sitting"));
+
+// //***************************** */
+// Формування пар ДНК
+// Пари ланцюгів ДНК складаються з пар нуклеотидних основ. Базові пари позначаються символами AT та CG, які утворюють будівельні блоки подвійної спіралі ДНК.
+
+// В ланцюжку ДНК бракує парного елементу. Напишіть функцію для пошуку відсутніх базових пар для наданого ланцюга ДНК. Для кожного символу в наданому рядку знайдіть символ базової пари. Поверніть результати як 2d-масив.
+
+// Наприклад, при введенні GCG, повернути [["G", "C"], ["C","G"], ["G", "C"]]
+
+// Символ і його пара об'єднуються в масив, а всі масиви згруповані в один інкапсульований масив.
+// function pairElement(str) {
+//   let arr = [];
+//   for (let i = 0; i < str.length; i += 1) {
+//     switch (str[i]) {
+//       case "A":
+//         arr.push(["A", "T"]);
+//         break;
+//       case "T":
+//         arr.push(["T", "A"]);
+//         break;
+
+//       case "C":
+//         arr.push(["C", "G"]);
+//         break;
+//       case "G":
+//         arr.push(["G", "C"]);
+//         break;
+//     }
+//   }
+
+//   return arr;
+// }
+
+// console.log(pairElement("GCG"));
+
+//************************* */
+
+// // Пропущені літери
+// // Знайдіть пропущену літеру в заданому діапазоні літер і поверніть її.
+
+// // Якщо у діапазоні є всі літери, повернути undefined.
+// function fearNotLetter(str) {
+//   const baseArr = "abcdefghijklmnopqrstuvwxyz".split("");
+//   const arr = str.split("");
+//   const letter = arr.find((elem) => baseArr.includes(elem));
+//   const index = baseArr.indexOf(letter);
+//   const newArr = baseArr.slice(index, index + arr.length);
+
+//   for (let i = 0; i < arr.length; i += 1) {
+//     if (arr[i] !== newArr[i]) {
+//       return newArr[i];
+//     }
+//   }
+//   return undefined;
+// }
+
+// console.log(fearNotLetter("abcdefghijklmnopqrstuvwxyz"));
+
+//************************* */
+
+// Сортування масиву
+// Напишіть функцію, яка приймає два або більше масивів та повертає новий масив унікальних значень у порядку наданих початкових масивів.
+
+// Іншими словами, усі значення, що є в масиві, повинні бути включені в їх первинному порядку, але в останньому масиві не повинно бути дублювання.
+
+// Унікальні номери повинні бути відсортовані за початковим порядком, але кінцевий масив не повинен бути відсортований в числовому порядку.
+// function uniteUnique(arr) {
+//   const newArr = [...arguments].flatMap((elem) => elem);
+//   const arrNew = new Set(newArr);
+//   return [...arrNew];
+// }
+
+// console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+//********************* */
+
+// // Перетворення позначення символів HTML
+// // Перетворити символи &, <, >, " (подвійні лапки), і ' (апостроф), в рядок з відповідним позначенням символів HTML.
+
+// function convertHTML(str) {
+//   let strNew = str;
+//   for (let i = 0; i < str.length; i += 1) {
+//     switch (str[i]) {
+//       case "&":
+//         strNew = strNew.replaceAll(`&`, "&amp;");
+//         break;
+//       case "<":
+//         strNew = strNew.replaceAll("<", "&lt;");
+//         break;
+//       case ">":
+//         strNew = strNew.replaceAll(">", "&gt;");
+//         break;
+//       case '"':
+//         strNew = strNew.replaceAll('"', "&quot;");
+//         break;
+//       case "'":
+//         strNew = strNew.replaceAll("'", "&apos;");
+//         break;
+//       default:
+//         continue;
+//     }
+//   }
+//   return strNew;
+// }
+
+// console.log(convertHTML("abc"));
+
+// console.log(convertHTML("<>"));
+// console.log(convertHTML("Dolce & Gabbana"));
+// console.log(convertHTML('Stuff in "quotation marks"'));
