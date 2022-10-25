@@ -806,3 +806,144 @@
 // console.log(convertHTML("<>"));
 // console.log(convertHTML("Dolce & Gabbana"));
 // console.log(convertHTML('Stuff in "quotation marks"'));
+
+//************************************ */
+
+// Сума усіх непарних чисел Фібоначчі
+// Написати функцію з додатним цілим числом num, що повертає суму усіх непарних чисел Фібоначчі, які менше або дорівнюють num.
+
+// Перші два числа в послідовності Фібоначчі - це 1 і 1. Кожне додаткове число у послідовності є сумою двох попередніх чисел. Перші шість чисел послідовності Фібоначчі - це 1, 1, 2, 3, 5 і 8.
+
+// Наприклад, sumFibs(10) потрібно повернути 10, тому що всі непарні числа Фібоначчі, які менше або дорівнюють 10 - це 1, 1, 3 і 5.
+// function sumFibs(num) {
+//   if (num === 1) {
+//     return 1;
+//   }
+//   let b = 0;
+//   let arr = [1, 1];
+//   for (let i = 2; i <= num; i += 1) {
+//     b = arr[i - 2] + arr[i - 1];
+//     if (b > num) {
+//       return arr.reduce((acc, elem) => {
+//         if (elem % 2 !== 0) {
+//           acc += elem;
+//         }
+//         return acc;
+//       }, 0);
+//     }
+//     arr.push(b);
+//   }
+// }
+
+// console.log(sumFibs(75024));
+
+//********************* */
+
+// Сума простих чисел
+// Просте число це ціле число, більше ніж 1 і має рівно два різних натуральних дільники: 1 і саме число. Наприклад, 2 - це просте число, тому що воно ділиться лише на 1 і 2. І навпаки, 4 не є простим числом, оскільки воно ділиться на 1, 2 і 4.
+
+// Переписати sumPrimes таким чином, щоб поверталася сума всіх простих чисел, які менше або дорівнюють num.
+// function sumPrimes(num) {
+//   const arr = [];
+
+//   for (let i = 2; i <= num; i += 1) {
+//     let total = 0;
+//     for (let j = 2; j < i; j += 1) {
+//       if (i % j !== 0) {
+//         total += 0;
+//       } else {
+//         total += 1;
+//       }
+//     }
+//     if (total === 0) {
+//       arr.push(i);
+//     }
+//   }
+//   return arr.reduce((acc, elem) => {
+//     acc += elem;
+//     return acc;
+//   }, 0);
+// }
+
+// console.log(sumPrimes(977));
+//************НОК */
+// function smallestCommons(arr) {
+//   //   let total =1;
+//   if (arr[0] > arr[1]) {
+//     arr.sort();
+//   }
+
+//   //   console.log(arr);
+//   let newArr = [];
+//   for (let i = arr[0]; i <= arr[1]; i += 1) {
+//     newArr.push(i);
+//   }
+//   // for(let i=0;i<newArr.length;i+=1) {
+//   //     total*=newArr[i]
+//   //   }
+
+//   //   return newArr.map(elem =>total/elem);
+
+//   let j = Math.max.apply(null, newArr);
+//   while (true) {
+//     if (newArr.every((b) => j % b == 0)) {
+//       return j;
+//       break;
+//     } else j++;
+//   }
+// }
+
+// console.log(smallestCommons([5, 1]));
+// console.log(smallestCommons([2, 10]));
+//********************* */
+// Видалення елементів масиву
+// Враховуючи масив arr, виконати ітерацію і видалення кожного елементу, починаючи з першого елементу (індекс 0), поки функція func не повертається як true, коли елемент пройшов ітерацію.
+
+// Потім повернути решту масиву, якщо умову виконано, в іншому випадку, arr повинен повертатися у вигляді пустого масиву.
+// function dropElements(arr, func) {
+//   const number = arr.find((elem) => func(elem));
+//   console.log(number);
+//   const index = arr.indexOf(number);
+//   console.log(index);
+//   arr.splice(0, index);
+//   if (index === -1) {
+//     return [];
+//   }
+//   // for(let i=0;i<arr.length;i+=1) {
+//   //   if(func(arr[i])) {
+//   //     arr.splice(i)
+//   //   }
+//   // }
+//   return arr;
+// }
+
+// console.log(
+//   dropElements([1, 2, 3], function (n) {
+//     return n < 3;
+//   })
+// );
+// console.log(
+//   dropElements([1, 2, 3, 9, 2], function (n) {
+//     return n > 2;
+//   })
+// );
+//************************* */
+// Steamroller
+// Стиснути вкладений масив. Необхідно враховувати різні рівні вкладення.
+function steamrollArray(arr) {
+  const flattenedArray = [];
+  // Loop over array contents
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      // Recursively flatten entries that are arrays
+      //  and push into the flattenedArray
+      flattenedArray.push(...steamrollArray(arr[i]));
+    } else {
+      // Copy contents that are not arrays
+      flattenedArray.push(arr[i]);
+    }
+  }
+  return flattenedArray;
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
