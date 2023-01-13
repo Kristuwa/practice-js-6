@@ -930,20 +930,301 @@
 //************************* */
 // Steamroller
 // Стиснути вкладений масив. Необхідно враховувати різні рівні вкладення.
-function steamrollArray(arr) {
-  const flattenedArray = [];
-  // Loop over array contents
-  for (let i = 0; i < arr.length; i++) {
-    if (Array.isArray(arr[i])) {
-      // Recursively flatten entries that are arrays
-      //  and push into the flattenedArray
-      flattenedArray.push(...steamrollArray(arr[i]));
-    } else {
-      // Copy contents that are not arrays
-      flattenedArray.push(arr[i]);
+// function steamrollArray(arr) {
+//   const flattenedArray = [];
+//   // Loop over array contents
+//   for (let i = 0; i < arr.length; i++) {
+//     if (Array.isArray(arr[i])) {
+//       // Recursively flatten entries that are arrays
+//       //  and push into the flattenedArray
+//       flattenedArray.push(...steamrollArray(arr[i]));
+//     } else {
+//       // Copy contents that are not arrays
+//       flattenedArray.push(arr[i]);
+//     }
+//   }
+//   return flattenedArray;
+// }
+
+// steamrollArray([1, [2], [3, [[4]]]]);
+
+// Заповніть конструктор об’єкта методами, наведеними нижче:
+
+// getFirstName()
+// getLastName()
+// getFullName()
+// setFirstName(first)
+// setLastName(last)
+// setFullName(firstAndLast)
+// Запустіть тести, щоб побачити очікуваний результат для кожного методу. Методи, що приймають аргумент, повинні приймати лише один аргумент і це має бути рядок. Ці методи повинні бути єдиними доступними засобами для взаємодії з об'єктом.
+
+// const Person = function (firstAndLast) {
+//   // Змініть код лише під цим рядком
+//   this.getFirstName = function () {
+//     return this.getFullName().split(" ")[0].trim();
+//   };
+//   this.getLastName = function () {
+//     return this.getFullName().split(" ")[1].trim();
+//   };
+//   this.setFirstName = function (first) {
+//     firstAndLast = first + " " + this.getLastName();
+//     return (this.getFullName().split(" ")[0] = first);
+//   };
+//   this.setLastName = function (last) {
+//     firstAndLast = this.getFirstName() + " " + last;
+//     return (this.getFullName().split(" ")[1] = last);
+//   };
+//   this.setFullName = function (firstAndLast) {
+//     this.setFirstName(firstAndLast.split(" ")[0]);
+//     this.setLastName(firstAndLast.split(" ")[1]);
+//     return firstAndLast;
+//   };
+//   // Завершіть поданий нижче метод та впровадьте наступні схожим способом
+//   this.getFullName = function () {
+//     return firstAndLast;
+//   };
+//   return firstAndLast;
+// };
+
+// const bob = new Person("Bob Ross");
+
+// // console.log(bob.getFullName());
+// // console.log(bob.getFirstName());
+// // console.log(bob.setLastName("Curry"));
+// console.log(bob.setFullName("Haskell Curry"));
+// console.log(bob.getFullName());
+// console.log(bob.getFirstName());
+// console.log(bob.getLastName());
+
+// Мапа Debris
+// Згідно з третім законом Кеплера, орбітальний період  T  двох точкових мас, що обертаються навколо одна одної по круговій або еліптичній орбіті, є:
+
+// T=2πa3μ−−−√
+
+// a  is the orbit's semi-major axis
+// μ=GM  is the standard gravitational parameter
+// G  is the gravitational constant,
+// M  is the mass of the more massive body.
+// Return a new array that transforms the elements' average altitude into their orbital periods (in seconds).
+
+// The array will contain objects in the format {name: 'name', avgAlt: avgAlt}.
+
+// The values should be rounded to the nearest whole number. The body being orbited is Earth.
+// function orbitalPeriod(arr) {
+//   const GM = 398600.4418;
+//   const earthRadius = 6367.4447;
+//   return arr.reduce((acc, elem) => {
+//     acc.push({
+//       name: elem.name,
+//       orbitalPeriod: Math.round(
+//         2 * 3.1415926 * Math.sqrt(Math.pow(earthRadius + elem.avgAlt, 3) / GM)
+//       ),
+//     });
+//     return acc;
+//   }, []);
+// }
+
+// console.log(orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]));
+
+//Палиндром
+
+// function palindrome(str) {
+//   let string = str
+//     .toLowerCase()
+//     .split(/[^A-Za-z0-9]/gi)
+//     .join("");
+//   let aux = string.split("");
+//   if (aux.join("") === aux.reverse().join("")) {
+//     return true;
+//   }
+
+//   return false;
+// }
+
+// function convertToRoman(num) {
+//   const objRome = {
+//     M: 1000,
+//     CM: 900,
+//     D: 500,
+//     CD: 400,
+//     C: 100,
+//     XC: 90,
+//     L: 50,
+//     XL: 40,
+//     X: 10,
+//     IX: 9,
+//     V: 5,
+//     IV: 4,
+//     I: 1,
+//   };
+//   const one = num % 10;
+//   let oneStr = "";
+//   const ten = (num - one) % 100;
+//   let tenStr = "";
+//   const hundried = (num - ten - one) % 1000;
+//   let hundriedStr = "";
+//   const thouthends = (num - hundried - ten - one) % 10000;
+//   let thouthendsStr = "";
+//   if (one > 0 && one <= 3) {
+//     const count = one / objRome["I"];
+//     console.log(count);
+//     oneStr = `${"I"}`.repeat(count);
+//   }
+//   if (one === 4) {
+//     oneStr = "IV";
+//   }
+//   if (one === 5) {
+//     oneStr = "V";
+//   }
+//   if (one >= 6 && one <= 8) {
+//     const count = one - 5;
+//     console.log(count);
+//     oneStr = `${"V"}` + `${"I"}`.repeat(count);
+//   }
+//   if (one === 9) {
+//     oneStr = "IX";
+//   }
+//   if (ten >= 10 && ten <= 30) {
+//     const count = ten / objRome["X"];
+//     console.log(count);
+//     tenStr = `${"X"}`.repeat(count);
+//   }
+//   if (ten === 40) {
+//     tenStr = "XL";
+//   }
+//   if (ten === 50) {
+//     tenStr = "L";
+//   }
+//   if (ten >= 60 && ten <= 80) {
+//     const count = (ten - 50) / 10;
+//     console.log(count);
+//     tenStr = `${"L"}` + `${"X"}`.repeat(count);
+//   }
+//   if (ten === 90) {
+//     tenStr = "XC";
+//   }
+//   if (hundried >= 100 && hundried <= 300) {
+//     const count = hundried / objRome["C"];
+//     console.log(objRome["C"]);
+//     hundriedStr = `${"C"}`.repeat(count);
+//   }
+//   if (hundried === 400) {
+//     hundriedStr = "CD";
+//   }
+//   if (hundried === 500) {
+//     hundriedStr = "D";
+//   }
+//   if (hundried >= 600 && hundried <= 800) {
+//     const count = (hundried - 500) / 100;
+//     console.log(count);
+//     hundriedStr = `${"D"}` + `${"C"}`.repeat(count);
+//   }
+//   if (hundried === 900) {
+//     hundriedStr = "CM";
+//   }
+//   if (thouthends >= 1000) {
+//     const count = thouthends / objRome["M"];
+//     console.log(objRome["M"]);
+//     thouthendsStr = `${"M"}`.repeat(count);
+//   }
+//   return `${thouthendsStr}${hundriedStr}${tenStr}${oneStr}`;
+// }
+
+// console.log(convertToRoman(2529));
+
+// function rot13(str) {
+//   const strAbetka = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//   const arrAbetka = strAbetka.split("");
+//   let newStr = "";
+//   let index;
+//   for (let i = 0; i < str.length; i += 1) {
+//     if (strAbetka.indexOf(str[i]) >= 13) {
+//       index = strAbetka.indexOf(str[i]) - 13;
+//       newStr += strAbetka[index];
+//     } else if (!strAbetka.includes(str[i])) {
+//       newStr += str[i];
+//     } else {
+//       index = strAbetka.indexOf(str[i]) + 13;
+//       newStr += strAbetka[index];
+//     }
+//   }
+//   return newStr;
+// }
+
+// console.log(rot13("SERR PBQR PNZC"));
+const currencyUnit = {
+  PENNY: 1,
+  NICKEL: 5,
+  DIME: 10,
+  QUARTER: 50,
+  ONE: 100,
+  FIVE: 500,
+  TEN: 1000,
+  TWENTY: 2000,
+  "ONE HUNDRED": 10000,
+};
+
+function checkCashRegister(price, cash, cid) {
+  let changeSum = cash * 100 - price * 100;
+  let changeSumCheck = changeSum;
+  let change = [];
+  let status = "";
+  let sumCid = 0;
+  let filteridCid = cid.filter((element) => element[1] !== 0).reverse();
+
+  filteridCid.forEach((elem) => {
+    let curr = elem[0];
+    let currSum = elem[1] * 100;
+    sumCid += currSum;
+    let amount = 0;
+    while (changeSum >= currencyUnit[curr] && currSum > 0) {
+      amount += currencyUnit[curr];
+      changeSum -= currencyUnit[curr];
+      currSum -= currencyUnit[curr];
     }
+    if (amount !== 0) {
+      change.push([curr, amount / 100]);
+    }
+  });
+  if (changeSum > 0) {
+    status = "INSUFFICIENT_FUNDS";
+    change = [];
+  } else if (changeSum === 0 && changeSumCheck === sumCid) {
+    status = "CLOSED";
+    change = cid;
+  } else {
+    status = "OPEN";
   }
-  return flattenedArray;
+
+  return { status: status, change: change };
 }
 
-steamrollArray([1, [2], [3, [[4]]]]);
+console.log(
+  checkCashRegister(19.5, 20, [
+    ["PENNY", 1.01],
+    ["NICKEL", 2.05],
+    ["DIME", 3.1],
+    ["QUARTER", 4.25],
+    ["ONE", 90],
+    ["FIVE", 55],
+    ["TEN", 20],
+    ["TWENTY", 60],
+    ["ONE HUNDRED", 100],
+  ])
+);
+
+console.log(
+  checkCashRegister(3.26, 100, [
+    ["PENNY", 1.01],
+    ["NICKEL", 2.05],
+    ["DIME", 3.1],
+    ["QUARTER", 4.25],
+    ["ONE", 90],
+    ["FIVE", 55],
+    ["TEN", 20],
+    ["TWENTY", 60],
+    ["ONE HUNDRED", 100],
+  ])
+);
+
+// console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]))
