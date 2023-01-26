@@ -182,28 +182,28 @@
 // Given an array of integers, find the one that appears an odd number of times.
 
 // There will always be only one integer that appears an odd number of times.
-function findOdd(A) {
-  let obj = {};
+// function findOdd(A) {
+//   let obj = {};
 
-  for (i = 0; i < A.length; i += 1) {
-    obj[A[i]];
-    obj[A[i]] = 1;
-    for (j = i + 1; j < A.length; j += 1) {
-      if (A[i] === A[j]) {
-        obj[A[i]] += 1;
-        A.splice(j, 1);
-        j -= 1;
-      }
-    }
-  }
+//   for (i = 0; i < A.length; i += 1) {
+//     obj[A[i]];
+//     obj[A[i]] = 1;
+//     for (j = i + 1; j < A.length; j += 1) {
+//       if (A[i] === A[j]) {
+//         obj[A[i]] += 1;
+//         A.splice(j, 1);
+//         j -= 1;
+//       }
+//     }
+//   }
 
-  const keys = Object.keys(obj);
-  for (let key of keys) {
-    if (obj[key] % 2 === 1) {
-      return Number(key);
-    }
-  }
-}
+//   const keys = Object.keys(obj);
+//   for (let key of keys) {
+//     if (obj[key] % 2 === 1) {
+//       return Number(key);
+//     }
+//   }
+// }
 
 // //другой вариант решения в одну строку)))
 // const findOdd = (xs) => xs.reduce((a, b) => a ^ b);
@@ -737,23 +737,6 @@ function findOdd(A) {
 // Пропущені літери
 // Знайдіть пропущену літеру в заданому діапазоні літер і поверніть її.
 // Якщо у діапазоні є всі літери, повернути undefined.
-function fearNotLetter(str) {
-  const baseArr = "abcdefghijklmnopqrstuvwxyz".split("");
-  const arr = str.split("");
-  const letter = arr.find((elem) => baseArr.includes(elem));
-  console.log(letter);
-  const index = baseArr.indexOf(letter);
-  const newArr = baseArr.slice(index, index + arr.length);
-  console.log(newArr);
-  for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i] !== baseArr[i]) {
-      return baseArr[i];
-    }
-  }
-  return undefined;
-}
-
-console.log(fearNotLetter("bcdefghijklmnopqrstuvwxyz"));
 
 //************************* */
 
@@ -1041,94 +1024,94 @@ console.log(fearNotLetter("bcdefghijklmnopqrstuvwxyz"));
 //   return false;
 // }
 
-function convertToRoman(num) {
-  const objRome = {
-    M: 1000,
-    CM: 900,
-    D: 500,
-    CD: 400,
-    C: 100,
-    XC: 90,
-    L: 50,
-    XL: 40,
-    X: 10,
-    IX: 9,
-    V: 5,
-    IV: 4,
-    I: 1,
-  };
-  const one = num % 10;
-  let oneStr = "";
-  const ten = (num - one) % 100;
-  let tenStr = "";
-  const hundreds = (num - ten - one) % 1000;
-  let hundredsStr = "";
-  const thousands = (num - hundreds - ten - one) % 10000;
-  let thousandsStr = "";
-  if (one > 0 && one <= 3) {
-    const count = one / objRome["I"];
+// function convertToRoman(num) {
+//   const objRome = {
+//     M: 1000,
+//     CM: 900,
+//     D: 500,
+//     CD: 400,
+//     C: 100,
+//     XC: 90,
+//     L: 50,
+//     XL: 40,
+//     X: 10,
+//     IX: 9,
+//     V: 5,
+//     IV: 4,
+//     I: 1,
+//   };
+//   const one = num % 10;
+//   let oneStr = "";
+//   const ten = (num - one) % 100;
+//   let tenStr = "";
+//   const hundreds = (num - ten - one) % 1000;
+//   let hundredsStr = "";
+//   const thousands = (num - hundreds - ten - one) % 10000;
+//   let thousandsStr = "";
+//   if (one > 0 && one <= 3) {
+//     const count = one / objRome["I"];
 
-    oneStr = `${"I"}`.repeat(count);
-  }
-  if (one === 4) {
-    oneStr = "IV";
-  }
-  if (one === 5) {
-    oneStr = "V";
-  }
-  if (one >= 6 && one <= 8) {
-    const count = one - 5;
-    console.log(count);
-    oneStr = `${"V"}` + `${"I"}`.repeat(count);
-  }
-  if (one === 9) {
-    oneStr = "IX";
-  }
-  if (ten >= 10 && ten <= 30) {
-    const count = ten / objRome["X"];
-    tenStr = `${"X"}`.repeat(count);
-  }
-  if (ten === 40) {
-    tenStr = "XL";
-  }
-  if (ten === 50) {
-    tenStr = "L";
-  }
-  if (ten >= 60 && ten <= 80) {
-    const count = (ten - 50) / 10;
-    console.log(count);
-    tenStr = `${"L"}` + `${"X"}`.repeat(count);
-  }
-  if (ten === 90) {
-    tenStr = "XC";
-  }
-  if (hundreds >= 100 && hundreds <= 300) {
-    const count = hundreds / objRome["C"];
-    console.log(objRome["C"]);
-    hundredsStr = `${"C"}`.repeat(count);
-  }
-  if (hundreds === 400) {
-    hundredsStr = "CD";
-  }
-  if (hundreds === 500) {
-    hundredsStr = "D";
-  }
-  if (hundreds >= 600 && hundreds <= 800) {
-    const count = (hundreds - 500) / 100;
-    console.log(count);
-    hundredsStr = `${"D"}` + `${"C"}`.repeat(count);
-  }
-  if (hundreds === 900) {
-    hundredsStr = "CM";
-  }
-  if (thousands >= 1000) {
-    const count = thousands / objRome["M"];
-    thousandsStr = `${"M"}`.repeat(count);
-  }
-  return `${thousandsStr}${hundredsStr}${tenStr}${oneStr}`;
-}
+//     oneStr = `${"I"}`.repeat(count);
+//   }
+//   if (one === 4) {
+//     oneStr = "IV";
+//   }
+//   if (one === 5) {
+//     oneStr = "V";
+//   }
+//   if (one >= 6 && one <= 8) {
+//     const count = one - 5;
+//     console.log(count);
+//     oneStr = `${"V"}` + `${"I"}`.repeat(count);
+//   }
+//   if (one === 9) {
+//     oneStr = "IX";
+//   }
+//   if (ten >= 10 && ten <= 30) {
+//     const count = ten / objRome["X"];
+//     tenStr = `${"X"}`.repeat(count);
+//   }
+//   if (ten === 40) {
+//     tenStr = "XL";
+//   }
+//   if (ten === 50) {
+//     tenStr = "L";
+//   }
+//   if (ten >= 60 && ten <= 80) {
+//     const count = (ten - 50) / 10;
+//     console.log(count);
+//     tenStr = `${"L"}` + `${"X"}`.repeat(count);
+//   }
+//   if (ten === 90) {
+//     tenStr = "XC";
+//   }
+//   if (hundreds >= 100 && hundreds <= 300) {
+//     const count = hundreds / objRome["C"];
+//     console.log(objRome["C"]);
+//     hundredsStr = `${"C"}`.repeat(count);
+//   }
+//   if (hundreds === 400) {
+//     hundredsStr = "CD";
+//   }
+//   if (hundreds === 500) {
+//     hundredsStr = "D";
+//   }
+//   if (hundreds >= 600 && hundreds <= 800) {
+//     const count = (hundreds - 500) / 100;
+//     console.log(count);
+//     hundredsStr = `${"D"}` + `${"C"}`.repeat(count);
+//   }
+//   if (hundreds === 900) {
+//     hundredsStr = "CM";
+//   }
+//   if (thousands >= 1000) {
+//     const count = thousands / objRome["M"];
+//     thousandsStr = `${"M"}`.repeat(count);
+//   }
+//   return `${thousandsStr}${hundredsStr}${tenStr}${oneStr}`;
+// }
 
-console.log(convertToRoman(2529));
+// console.log(convertToRoman(2529));
 
 // function rot13(str) {
 //   const strAbetka = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -1226,3 +1209,90 @@ console.log(convertToRoman(2529));
 // );
 
 // console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]))
+function calculateTeamFinanceReport(salaries, team) {
+  const keysSalaries = Object.keys(salaries);
+
+  const fullSalary = {};
+  for (let key of keysSalaries) {
+    const taxPercent = Number(parseInt(salaries[key].tax));
+    fullSalary[key] = Math.round(
+      (salaries[key].salary * 100) / (100 - taxPercent)
+    );
+  }
+  const keysFullSalary = Object.keys(fullSalary);
+
+  const teamProfessions = team.reduce((obj, item) => {
+    obj.push(item.specialization);
+    return obj;
+  }, []);
+
+  let counterProfessions = {};
+  for (let i = 0; i < teamProfessions.length; i += 1) {
+    counterProfessions[teamProfessions[i]] = 1;
+    for (let j = i + 1; j < teamProfessions.length - 1; j += 1) {
+      if (teamProfessions[i] === teamProfessions[j]) {
+        counterProfessions[teamProfessions[i]] += 1;
+        teamProfessions.splice(i, 1);
+        j -= 1;
+      }
+      counterProfessions[teamProfessions[i]] += 0;
+    }
+  }
+
+  const totalSalaryProfessions = team.reduce((acc, member) => {
+    acc[`totalBudget${member.specialization}`] = 0;
+    keysFullSalary.map((key) => {
+      if (member.specialization === key) {
+        acc[`totalBudget${member.specialization}`] +=
+          fullSalary[key] * counterProfessions[key];
+      } else {
+        acc[`totalBudget${member.specialization}`] += 0;
+      }
+    });
+
+    return acc;
+  }, {});
+
+  const keys = Object.keys(totalSalaryProfessions);
+  const countTotalTeamSalary = keys.reduce((total, item) => {
+    total += totalSalaryProfessions[item];
+    return total;
+  }, 0);
+
+  const resultReport = {
+    totalBudgetTeam: countTotalTeamSalary,
+    ...totalSalaryProfessions,
+  };
+  return resultReport;
+}
+
+const salaries1 = {
+  Manager: { salary: 1000, tax: "10%" },
+  Designer: { salary: 600, tax: "30%" },
+  Artist: { salary: 1500, tax: "15%" },
+};
+const team1 = [
+  { name: "Misha", specialization: "Manager" },
+  { name: "Max", specialization: "Designer" },
+  { name: "Vova", specialization: "Designer" },
+  { name: "Leo", specialization: "Artist" },
+];
+const financeReport1 = calculateTeamFinanceReport(salaries1, team1);
+console.log(JSON.stringify(financeReport1));
+
+const salaries2 = {
+  TeamLead: { salary: 1000, tax: "99%" },
+  Architect: { salary: 9000, tax: "34%" },
+};
+const team2 = [
+  { name: "Alexander", specialization: "TeamLead" },
+  { name: "Gaudi", specialization: "Architect" },
+  { name: "Koolhas", specialization: "Architect" },
+  { name: "Foster", specialization: "Architect" },
+  { name: "Napoleon", specialization: "General" },
+];
+const financeReport2 = calculateTeamFinanceReport(salaries2, team2);
+console.log(JSON.stringify(financeReport2));
+/* see in console
+	{"totalBudgetTeam":140909,"totalBudgetTeamLead":100000,"totalBudgetArchitect":40909}
+	*/
