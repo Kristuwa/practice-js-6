@@ -1209,90 +1209,446 @@
 // );
 
 // console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]))
-function calculateTeamFinanceReport(salaries, team) {
-  const keysSalaries = Object.keys(salaries);
+// function calculateTeamFinanceReport(salaries, team) {
+//   const keysSalaries = Object.keys(salaries);
 
-  const fullSalary = {};
-  for (let key of keysSalaries) {
-    const taxPercent = Number(parseInt(salaries[key].tax));
-    fullSalary[key] = Math.round(
-      (salaries[key].salary * 100) / (100 - taxPercent)
-    );
-  }
-  const keysFullSalary = Object.keys(fullSalary);
+//   const fullSalary = {};
+//   for (let key of keysSalaries) {
+//     const taxPercent = Number(parseInt(salaries[key].tax));
+//     fullSalary[key] = Math.round(
+//       (salaries[key].salary * 100) / (100 - taxPercent)
+//     );
+//   }
+//   const keysFullSalary = Object.keys(fullSalary);
 
-  const teamProfessions = team.reduce((obj, item) => {
-    obj.push(item.specialization);
-    return obj;
-  }, []);
+//   const teamProfessions = team.reduce((obj, item) => {
+//     obj.push(item.specialization);
+//     return obj;
+//   }, []);
 
-  let counterProfessions = {};
-  for (let i = 0; i < teamProfessions.length; i += 1) {
-    counterProfessions[teamProfessions[i]] = 1;
-    for (let j = i + 1; j < teamProfessions.length - 1; j += 1) {
-      if (teamProfessions[i] === teamProfessions[j]) {
-        counterProfessions[teamProfessions[i]] += 1;
-        teamProfessions.splice(i, 1);
-        j -= 1;
-      }
-      counterProfessions[teamProfessions[i]] += 0;
-    }
-  }
+//   let counterProfessions = {};
+//   for (let i = 0; i < teamProfessions.length; i += 1) {
+//     counterProfessions[teamProfessions[i]] = 1;
+//     for (let j = i + 1; j < teamProfessions.length - 1; j += 1) {
+//       if (teamProfessions[i] === teamProfessions[j]) {
+//         counterProfessions[teamProfessions[i]] += 1;
+//         teamProfessions.splice(i, 1);
+//         j -= 1;
+//       }
+//       counterProfessions[teamProfessions[i]] += 0;
+//     }
+//   }
 
-  const totalSalaryProfessions = team.reduce((acc, member) => {
-    acc[`totalBudget${member.specialization}`] = 0;
-    keysFullSalary.map((key) => {
-      if (member.specialization === key) {
-        acc[`totalBudget${member.specialization}`] +=
-          fullSalary[key] * counterProfessions[key];
-      } else {
-        acc[`totalBudget${member.specialization}`] += 0;
-      }
-    });
+//   const totalSalaryProfessions = team.reduce((acc, member) => {
+//     acc[`totalBudget${member.specialization}`] = 0;
+//     keysFullSalary.map((key) => {
+//       if (member.specialization === key) {
+//         acc[`totalBudget${member.specialization}`] +=
+//           fullSalary[key] * counterProfessions[key];
+//       } else {
+//         acc[`totalBudget${member.specialization}`] += 0;
+//       }
+//     });
 
-    return acc;
-  }, {});
+//     return acc;
+//   }, {});
 
-  const keys = Object.keys(totalSalaryProfessions);
-  const countTotalTeamSalary = keys.reduce((total, item) => {
-    total += totalSalaryProfessions[item];
-    return total;
-  }, 0);
+//   const keys = Object.keys(totalSalaryProfessions);
+//   const countTotalTeamSalary = keys.reduce((total, item) => {
+//     total += totalSalaryProfessions[item];
+//     return total;
+//   }, 0);
 
-  const resultReport = {
-    totalBudgetTeam: countTotalTeamSalary,
-    ...totalSalaryProfessions,
-  };
-  return resultReport;
-}
+//   const resultReport = {
+//     totalBudgetTeam: countTotalTeamSalary,
+//     ...totalSalaryProfessions,
+//   };
+//   return resultReport;
+// }
 
-const salaries1 = {
-  Manager: { salary: 1000, tax: "10%" },
-  Designer: { salary: 600, tax: "30%" },
-  Artist: { salary: 1500, tax: "15%" },
-};
-const team1 = [
-  { name: "Misha", specialization: "Manager" },
-  { name: "Max", specialization: "Designer" },
-  { name: "Vova", specialization: "Designer" },
-  { name: "Leo", specialization: "Artist" },
-];
-const financeReport1 = calculateTeamFinanceReport(salaries1, team1);
-console.log(JSON.stringify(financeReport1));
+// const salaries1 = {
+//   Manager: { salary: 1000, tax: "10%" },
+//   Designer: { salary: 600, tax: "30%" },
+//   Artist: { salary: 1500, tax: "15%" },
+// };
+// const team1 = [
+//   { name: "Misha", specialization: "Manager" },
+//   { name: "Max", specialization: "Designer" },
+//   { name: "Vova", specialization: "Designer" },
+//   { name: "Leo", specialization: "Artist" },
+// ];
+// const financeReport1 = calculateTeamFinanceReport(salaries1, team1);
+// console.log(JSON.stringify(financeReport1));
 
-const salaries2 = {
-  TeamLead: { salary: 1000, tax: "99%" },
-  Architect: { salary: 9000, tax: "34%" },
-};
-const team2 = [
-  { name: "Alexander", specialization: "TeamLead" },
-  { name: "Gaudi", specialization: "Architect" },
-  { name: "Koolhas", specialization: "Architect" },
-  { name: "Foster", specialization: "Architect" },
-  { name: "Napoleon", specialization: "General" },
-];
-const financeReport2 = calculateTeamFinanceReport(salaries2, team2);
-console.log(JSON.stringify(financeReport2));
+// const salaries2 = {
+//   TeamLead: { salary: 1000, tax: "99%" },
+//   Architect: { salary: 9000, tax: "34%" },
+// };
+// const team2 = [
+//   { name: "Alexander", specialization: "TeamLead" },
+//   { name: "Gaudi", specialization: "Architect" },
+//   { name: "Koolhas", specialization: "Architect" },
+//   { name: "Foster", specialization: "Architect" },
+//   { name: "Napoleon", specialization: "General" },
+// ];
+// const financeReport2 = calculateTeamFinanceReport(salaries2, team2);
+// console.log(JSON.stringify(financeReport2));
 /* see in console
 	{"totalBudgetTeam":140909,"totalBudgetTeamLead":100000,"totalBudgetArchitect":40909}
 	*/
+
+// function add(num1, num2) {
+//   const str1 = num1.toString();
+
+//   const str2 = num2.toString();
+//   const arr1 = str1.split("");
+//   const arr2 = str2.split("");
+//   let str = "";
+//   if (str1.length > str2.length) {
+//     for (let i = arr1.length - 1; i >= 0; i -= 1) {
+//       for (let j = arr2.length - 1; j >= 0; j -= 1) {
+//         if (!arr2[j]) {
+//           str = arr1[i] + str;
+//         } else {
+//           str = (Number(arr1[i]) + Number(arr2[j])).toString() + str;
+//         }
+//         if (j > 0) {
+//           i -= 1;
+//         }
+//       }
+//     }
+//   } else {
+//     for (let i = arr2.length - 1; i >= 0; i -= 1) {
+//       for (let j = arr1.length - 1; j >= 0; j -= 1) {
+//         if (!arr1[j]) {
+//           str = arr2[i] + str;
+//         } else {
+//           str = (Number(arr1[j]) + Number(arr2[i])).toString() + str;
+//         }
+//         if (j > 0) {
+//           i -= 1;
+//         }
+//       }
+//     }
+//   }
+//   console.log(str);
+//   return Number(str);
+// }
+
+// console.log(add(146, 28));
+// function combine() {
+//   const arr = [...arguments];
+//   // Your code here
+//   let object3 = {};
+//   for (let i = 0; i < arr.length; i += 1) {
+//     for (key in arr[i]) {
+//       if (object3[key] === undefined) {
+//         object3[key] = arr[i][key];
+//       } else {
+//         object3[key] = parseFloat(object3[key]) + parseFloat(arr[i][key]);
+//       }
+//     }
+//   }
+
+//   return object3;
+// }
+
+// const objA = { a: 10, b: 20, c: 30 };
+// const objB = { a: 3, c: 6, d: 3 };
+// combine(objA, objB); // Returns { a: 13, b: 20, c: 36, d: 3 }
+
+// function findMissing(arr1, arr2) {
+//   const array1 = arr1;
+//   const array2 = arr2;
+//   for (let i = 0; i < array1.length; i += 1) {
+//     for (let j = 0; j < array2.length; j += 1) {
+//       if (array1[i] === array2[j]) {
+//         array1.splice(i, 1);
+//         array2.splice(j, 1);
+//         j -= 1;
+//         i -= 1;
+//       }
+//       continue;
+//     }
+//   }
+//   // Your solution here    console.log([...array1, ...array2]);
+//   return [...array1, ...array2][0];
+// }
+// console.log(findMissing([6, 1, 3, 6, 8, 2], [3, 6, 6, 1, 2]));
+
+// function maxTriSum(numbers) {
+//   const arr = numbers;
+//   //your code here
+//   let sum = 0;
+//   let sum2 = 0;
+//   //   arr.filter((item) => arr.splice(0, arr.indexOf(item)).includes(item));
+//   for (let i = 0; i < arr.length; i += 1) {
+//     if (arr.slice(0, i).includes(arr[i])) {
+//       arr.splice(i, 1);
+//       i -= 1;
+//     }
+//   }
+
+//   console.log(arr);
+//   for (let i = 0; i < arr.length; i += 1) {
+//     sum2 = arr[i] + arr[i + 1] + arr[i + 2];
+//     if (sum2 < 0) {
+//       sum = sum2;
+//     }
+//     if (sum2 > sum) {
+//       sum = sum2;
+//     }
+//   }
+//   return sum;
+// }
+
+// console.log(maxTriSum([3, 2, 6, 8, 2, 3]));
+// console.log(maxTriSum([-3, -27, -4, -2, -27, -2]));
+// function add(num1, num2) {
+//   const str1 = num1.toString();
+//   const str2 = num2.toString();
+//   const arr1 = str1.split("");
+//   const arr2 = str2.split("");
+//   let obj = {};
+//   if (arr1.length >= arr2.length) {
+//     for (let i = 0; i < arr1.length; i += 1) {
+//       if (!arr2[arr2.length - 1 - i]) {
+//         console.log(arr2[arr2.length - 1 - i]);
+//         obj[i] = Number(arr1[arr1.length - 1 - i]);
+//       } else {
+//         console.log(arr2[arr2.length - 1 - i]);
+//         obj[i] =
+//           Number(arr1[arr1.length - 1 - i]) + Number(arr2[arr2.length - 1 - i]);
+//       }
+//     }
+//   } else {
+//     for (let i = 0; i < arr2.length; i += 1) {
+//       if (!arr1[arr1.length - 1 - i]) {
+//         obj[i] = Number(arr2[arr2.length - 1 - i]);
+//       } else {
+//         obj[i] =
+//           Number(arr1[arr1.length - 1 - i]) + Number(arr2[arr2.length - 1 - i]);
+//       }
+//     }
+//   }
+//   console.log(obj);
+//   const values = Object.values(obj);
+//   return Number(values.reverse().join(""));
+// }
+
+// console.log(add(146, 28));
+//
+// function getDecimal(n) {
+//   const string = n.toString();
+//   const index = string.indexOf(".");
+//   return Number(string.slice(index));
+// }
+
+// console.log(getDecimal(-2.2));
+
+// function whoseBicycle(diary1, diary2, diary3) {
+//   // good luck
+//   const diary1Values = Object.values(diary1);
+//   const diary2Values = Object.values(diary2);
+//   const diary3Values = Object.values(diary3);
+//   const total1 = diary1Values.reduce((acc, item) => {
+//     acc += item;
+//     return acc;
+//   }, 0);
+//   const total2 = diary2Values.reduce((acc, item) => {
+//     acc += item;
+//     return acc;
+//   }, 0);
+//   const total3 = diary3Values.reduce((acc, item) => {
+//     acc += item;
+//     return acc;
+//   }, 0);
+//   console.log(total1, total2, total3);
+//   if (total1 > total2 && total1 > total3) {
+//     return "I need to buy a bicycle for my first son.";
+//   }
+//   if (total2 > total1 && total2 > total3) {
+//     return "I need to buy a bicycle for my second son.";
+//   }
+//   if (
+//     (total3 > total1 && total3 > total2) ||
+//     (total2 === total3 && total1 === total2)
+//   ) {
+//     return "I need to buy a bicycle for my third son.";
+//   }
+//   if (total2 === total3 || total1 === total3) {
+//     return "I need to buy a bicycle for my third son.";
+//   }
+//   if (total1 === total2) {
+//     return "I need to buy a bicycle for my second son.";
+//   }
+// }
+
+// console.log(
+//   whoseBicycle(
+//     {
+//       algebra: 6,
+//       history: 7,
+//       physics: 8,
+//       geography: 9,
+//       chemistry: 10,
+//     },
+//     {
+//       algebra: 8,
+//       history: 7,
+//       physics: 8,
+//       geography: 9,
+//       chemistry: 10,
+//     },
+//     {
+//       algebra: 6,
+//       history: 5,
+//       physics: 5,
+//       geography: 9,
+//       chemistry: 10,
+//     }
+//   )
+// );
+
+// function nicknameGenerator(name) {
+//   const letters = "aeiou";
+//   const arr = letters.split("");
+//   if (arr.includes(name[2])) {
+//     return name.slice(0, 4);
+//   }
+//   return name.slice(0, 3);
+//   //code goes here
+// }
+
+// console.log(nicknameGenerator("Robert"));
+// console.log(nicknameGenerator("Jeannie"));
+// function sortMyString(S) {
+//   const arr = S.split("");
+//   const odd = arr.filter((item, i, arr) => i % 2 !== 0);
+//   const even = arr.filter((item, i, arr) => i % 2 === 0);
+//   console.log(odd);
+//   // your code here
+//   return even.join("") + " " + odd.join("");
+// }
+
+// console.log(sortMyString("CodeWars"));
+
+// function isPowerOfTwo(n) {
+//   //.. should return true or false ..
+
+//   return (n & (n - 1)) === 0;
+// }
+// console.log(isPowerOfTwo(1024)); // -> true
+// console.log(isPowerOfTwo(4096)); // -> true
+// console.log(isPowerOfTwo(333));
+// function sentence(List) {
+//   // your code
+//   let arr = [];
+//   let obj = {};
+//   List.map((item) => {
+//     arr.push(...Object.keys(item));
+//     obj = { ...obj, ...item };
+//   });
+//   console.log(obj);
+//   console.log(arr);
+//   const sort = arr.sort((a, b) => a - b);
+//   console.log(sort);
+//   return sort.reduce((acc, item, i, arr) => {
+//     console.log(obj[item]);
+//     acc += obj[Number(item)] + " ";
+//     if (i === sort.length - 1) {
+//       acc += obj[Number(item)];
+//     }
+//     return acc;
+//   }, "");
+// }
+// let List = [
+//   { 4: "dog" },
+//   { 2: "took" },
+//   { 3: "his" },
+//   { "-2": "Vatsan" },
+//   { 5: "for" },
+//   { 6: "a" },
+//   { 12: "spin" },
+// ];
+
+// console.log(sentence(List));
+// function minSum(arr) {
+//   // your code here
+//   const sort = arr.sort((a, b) => a - b);
+//   console.log(sort);
+//   let total = 0;
+//   for (let i = 0; i < sort.length / 2; i += 1) {
+//     console.log(sort[i]);
+//     total += sort[i] * sort[sort.length - 1 - i];
+//   }
+//   return total;
+// }
+// console.log(minSum([5, 4, 2, 3]));
+// console.log(minSum([12, 6, 10, 26, 3, 24]));
+// console.log(minSum([9, 2, 8, 7, 5, 4, 0, 6]));
+// function vowelOne(s) {
+//   // ...
+//   return s.replace(/[^aeiou]/gi, "0").replace(/[^\d]/g, "1");
+// }
+
+// // console.log(vowelOne("vowelOne"));
+// function killer(suspectInfo, dead) {
+//   //your code here...
+//   const keys = Object.keys(suspectInfo);
+
+//   for (let key of keys) {
+//     let total = 0;
+//     for (let i = 0; i < dead.length; i += 1) {
+//       if (suspectInfo[key].includes(dead[i])) {
+//         total += 1;
+//       }
+//       total += 0;
+//     }
+//     if (total === dead.length) {
+//       return suspectInfo[key];
+//     }
+//   }
+// }
+
+// function dataReverse(data) {
+//   // Your code here
+//   let str = "";
+//   for (let i = 0; i < data.length / 8; i += 1) {
+//     //  console.log(data.slice(data.length - 1 - i * 8, 8));
+//     if (i === data.length / 8 - 1) {
+//       str += data
+//         .slice(data.length - (i + 1) * 8, data.length - i * 8)
+//         .join("");
+//     } else
+//       str +=
+//         data.slice(data.length - (i + 1) * 8, data.length - i * 8).join("") +
+//         " ";
+//   }
+
+//   return str.split(" ");
+// }
+
+function dataReverse(data) {
+  // Your code here
+  let str = "";
+  for (let i = 0; i < data.length / 8; i += 1) {
+    str += data.slice(data.length - (i + 1) * 8, data.length - i * 8).join("");
+  }
+
+  return str.split("").map((item) => Number(item));
+}
+
+console.log(
+  dataReverse([
+    1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
+    0, 1, 0, 1, 0, 1, 0,
+  ])
+);
+console.log(
+  dataReverse([
+    1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+    1, 1, 1, 1, 1, 1, 1,
+  ])
+);
+console.log(dataReverse([0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1]));
