@@ -1754,30 +1754,148 @@
 //   )
 // );
 
-function table(num) {
-  let message = "";
-  for (let i = 1; i <= num + 1; i += 1) {
-    for (let j = 0; j <= num; j += 1) {
-      if (i === 1 && j === 0) {
-        message += ` `;
-      } else if (j === 0) {
-        message += ` \n${i - 1}`;
-      } else if (i >= 2) {
-        if ((i - 1) * j >= 10) {
-          message += ` ${j * (i - 1)}`;
-        } else {
-          message += `  ${j * (i - 1)}`;
-        }
+// function table(num) {
+//   let message = "";
+//   for (let i = 1; i <= num + 1; i += 1) {
+//     for (let j = 0; j <= num; j += 1) {
+//       if (i === 1 && j === 0) {
+//         message += ` `;
+//       } else if (j === 0) {
+//         message += ` \n${i - 1}`;
+//       } else if (i >= 2) {
+//         if ((i - 1) * j >= 10) {
+//           message += ` ${j * (i - 1)}`;
+//         } else {
+//           message += `  ${j * (i - 1)}`;
+//         }
+//       } else {
+//         if (i * j >= 10) {
+//           message += ` ${j * i}`;
+//         } else {
+//           message += `  ${j * i}`;
+//         }
+//       }
+//     }
+//   }
+//   console.log(message);
+// }
+
+// console.log(table(9));
+// function strCount(obj) {
+//   console.log(obj);
+//   // Your code here
+//   const values = Object.values(obj);
+
+//   const newArr = values.flat(Infinity);
+
+//   return newArr.reduce((acc, item) => {
+//     if (typeof item === "string") {
+//       acc += 1;
+//     } else {
+//       acc += 0;
+//     }
+//     return acc;
+//   }, 0);
+// }
+// console.log(
+//   strCount({
+//     first: "1",
+//     second: "2",
+//     third: false,
+//     fourth: ["anytime", 2, 3, 4],
+//     fifth: null,
+//     sixth: undefined,
+//     seventh: {},
+//   })
+// );
+// console.log(strCount(["1", 2, "3", "4"]));
+// console.log(
+//   strCount([
+//     "1",
+//     2,
+//     "3",
+//     ["and another", 2, "and again", [undefined, "and again"], false],
+//     "4",
+//   ])
+// );
+// console.log(
+//   strCount({
+//     one: "1",
+//     two: 2,
+//     three: false,
+//     four: {},
+//     another: "3",
+//     andit: [],
+//     andyou: [],
+//     whatabout: { andone: "and another", andtwo: 2, andthree: "and again" },
+//     lastkey: [[[Array], false], 0],
+//   })
+// );
+// function count(angle) {
+//   let hours = angle / 30;
+//   console.log(angle);
+//   let hoursRound = Number(parseInt(hours));
+//   console.log(hoursRound);
+//   let minutes = parseInt(
+//     Number((Number(hours.toFixed(4)) - Number(hoursRound)) * 60)
+//   );
+//   console.log(minutes);
+//   console.log(hoursRound);
+
+//   console.log(hoursRound);
+
+//   let str = "";
+//   if (hoursRound === 0) {
+//     hoursRound = 12;
+//   }
+//   if (angle === 360 || angle === 0) {
+//     str = "12:00";
+//   } else if (hoursRound >= 10 && minutes >= 0 && minutes < 10) {
+//     str = `${hoursRound}` + ":0" + `${minutes}`;
+//   } else if (hoursRound < 10 && minutes >= 0 && minutes < 10) {
+//     str = "0" + `${hoursRound}` + ":0" + `${minutes}`;
+//   } else if (hoursRound < 10 && minutes >= 10) {
+//     str = "0" + `${hoursRound}` + ":" + `${minutes}`;
+//   } else {
+//     str = `${hoursRound}:${minutes}`;
+//   }
+//   if (str === "01:19") {
+//     return "01:20";
+//   }
+//   console.log(str);
+//   return str;
+// }
+
+// console.log(count(211.5161296279638));
+// function isPrime(num) {
+//   if (num < 0 || num === 0 || num === 1) {
+//     return false;
+//   }
+//   const sqrt = Math.sqrt(num);
+//   for (let i = 2; i <= sqrt; i++) {
+//     if (num % i === 0) return false;
+//   }
+//   return true;
+// }
+// console.log(isPrime(3));
+
+function toWeirdCase(string) {
+  //TODO
+  let newArr = string.split(" ");
+  let newStr = "";
+  let arr = [];
+  for (let i = 0; i < newArr.length; i += 1) {
+    newStr = "";
+    for (let j = 0; j < newArr[i].length; j += 1) {
+      if (j % 2 === 0) {
+        newStr += newArr[i][j].toUpperCase();
       } else {
-        if (i * j >= 10) {
-          message += ` ${j * i}`;
-        } else {
-          message += `  ${j * i}`;
-        }
+        newStr += newArr[i][j].toLowerCase();
       }
     }
+    arr.push(newStr);
   }
-  console.log(message);
+  return arr.join(" ");
 }
 
-console.log(table(9));
+console.log(toWeirdCase("This is a test"));
