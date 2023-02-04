@@ -1629,26 +1629,155 @@
 //   return str.split(" ");
 // }
 
-function dataReverse(data) {
-  // Your code here
-  let str = "";
-  for (let i = 0; i < data.length / 8; i += 1) {
-    str += data.slice(data.length - (i + 1) * 8, data.length - i * 8).join("");
-  }
+// function dataReverse(data) {
+//   // Your code here
+//   let str = "";
+//   for (let i = 0; i < data.length / 8; i += 1) {
+//     str += data.slice(data.length - (i + 1) * 8, data.length - i * 8).join("");
+//   }
 
-  return str.split("").map((item) => Number(item));
+//   return str.split("").map((item) => Number(item));
+// }
+
+// console.log(
+//   dataReverse([
+//     1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
+//     0, 1, 0, 1, 0, 1, 0,
+//   ])
+// );
+// console.log(
+//   dataReverse([
+//     1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+//     1, 1, 1, 1, 1, 1, 1,
+//   ])
+// );
+// console.log(dataReverse([0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1]));
+// function arrayToString(arr) {
+//   return arr.join(", ") + ".";
+// }
+
+// function roundToFive(num) {
+//   if (num % 5 === 0) {
+//     return num;
+//   } else if (num % 5 <= 2.5) {
+//     return num - (num % 5);
+//   } else {
+//     return num - (num % 5) + 5;
+//   }
+// }
+// console.log(roundToFive(27));
+// console.log(roundToFive(27.8));
+// console.log(roundToFive(41.7));
+// function addNumToString(num) {
+//   const string = num.toString();
+//   const lastNumber = string[string.length - 1];
+//   let str = "компьютер";
+//   if (Number(lastNumber) === 1) {
+//     return `${num}` + " " + str;
+//   } else if (Number(lastNumber) > 1 && Number(lastNumber) <= 4) {
+//     return `${num}` + " " + str + "a";
+//   } else {
+//     return `${num}` + " " + str + "ов";
+//   }
+// }
+
+// console.log(addNumToString(45));
+// console.log(addNumToString(51));
+// console.log(addNumToString(60));
+// console.log(addNumToString(46));
+// console.log(addNumToString(33));
+// function number(num) {
+//   let total = 0;
+//   for (let i = 1; i < num; i += 1) {
+//     if (num % i === 0) {
+//       total += 1;
+//     }
+//     total += 0;
+//   }
+//   if (total === 1) {
+//     return true;
+//   }
+//   return false;
+// }
+
+// console.log("1", number(1));
+// console.log("2", number(2));
+// console.log("3", number(3));
+// console.log("4", number(4));
+// console.log("5", number(5));
+// console.log("6", number(6));
+// console.log("7", number(7));
+// console.log("9", number(9));
+// console.log("10", number(10));
+// console.log("11", number(11));
+// console.log("12", number(12));
+// console.log("13", number(13));
+// function onlyOneinTwoArrays(arr1, arr2) {
+//   let arrayOfRepeatElements = [];
+
+//   const obj1 = arr1.reduce((acc, item) => {
+//     const keys = Object.keys(acc);
+//     if (!keys.includes(item.toString())) {
+//       acc[item] = 1;
+//     } else {
+//       acc[item] += 1;
+//     }
+
+//     return acc;
+//   }, {});
+
+//   const obj2 = arr2.reduce((acc, item) => {
+//     const keys = Object.keys(acc);
+//     if (!keys.includes(item.toString())) {
+//       acc[item] = 1;
+//     } else {
+//       acc[item] += 1;
+//     }
+
+//     return acc;
+//   }, {});
+
+//   const keys1 = Object.keys(obj1);
+//   keys1.map((item) => {
+//     if (obj1[item] >= 2 && obj2[item] >= 2) {
+//       arrayOfRepeatElements.push(Number(item));
+//     }
+//   });
+
+//   return arrayOfRepeatElements;
+// }
+
+// console.log(
+//   onlyOneinTwoArrays(
+//     [7, 17, 1, 9, 1, 17, 56, 56, 23],
+//     [56, 17, 17, 1, 23, 34, 23, 1, 8, 1]
+//   )
+// );
+
+function table(num) {
+  let message = "";
+  for (let i = 1; i <= num + 1; i += 1) {
+    for (let j = 0; j <= num; j += 1) {
+      if (i === 1 && j === 0) {
+        message += ` `;
+      } else if (j === 0) {
+        message += ` \n${i - 1}`;
+      } else if (i >= 2) {
+        if ((i - 1) * j >= 10) {
+          message += ` ${j * (i - 1)}`;
+        } else {
+          message += `  ${j * (i - 1)}`;
+        }
+      } else {
+        if (i * j >= 10) {
+          message += ` ${j * i}`;
+        } else {
+          message += `  ${j * i}`;
+        }
+      }
+    }
+  }
+  console.log(message);
 }
 
-console.log(
-  dataReverse([
-    1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
-    0, 1, 0, 1, 0, 1, 0,
-  ])
-);
-console.log(
-  dataReverse([
-    1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1,
-  ])
-);
-console.log(dataReverse([0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1]));
+console.log(table(9));
