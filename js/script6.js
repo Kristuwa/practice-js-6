@@ -1879,23 +1879,66 @@
 // }
 // console.log(isPrime(3));
 
-function toWeirdCase(string) {
-  //TODO
-  let newArr = string.split(" ");
-  let newStr = "";
-  let arr = [];
-  for (let i = 0; i < newArr.length; i += 1) {
-    newStr = "";
-    for (let j = 0; j < newArr[i].length; j += 1) {
-      if (j % 2 === 0) {
-        newStr += newArr[i][j].toUpperCase();
-      } else {
-        newStr += newArr[i][j].toLowerCase();
-      }
+// function toWeirdCase(string) {
+//   //TODO
+//   let newArr = string.split(" ");
+//   let newStr = "";
+//   let arr = [];
+//   for (let i = 0; i < newArr.length; i += 1) {
+//     newStr = "";
+//     for (let j = 0; j < newArr[i].length; j += 1) {
+//       if (j % 2 === 0) {
+//         newStr += newArr[i][j].toUpperCase();
+//       } else {
+//         newStr += newArr[i][j].toLowerCase();
+//       }
+//     }
+//     arr.push(newStr);
+//   }
+//   return arr.join(" ");
+// }
+
+// console.log(toWeirdCase("This is a test"));
+function bingo(ticket, win) {
+  const myWin = ticket.reduce((acc, item) => {
+    const numbersOfletter = item[0]
+      .split("")
+      .map((letter) => letter.charCodeAt(0));
+
+    if (numbersOfletter.includes(item[1])) {
+      acc += 1;
     }
-    arr.push(newStr);
+    acc += 0;
+    return acc;
+  }, 0);
+  console.log(myWin);
+  if (myWin >= win) {
+    return "Winner!";
+  } else {
+    return "Loser!";
   }
-  return arr.join(" ");
 }
 
-console.log(toWeirdCase("This is a test"));
+// console.log(
+//   bingo(
+//     [
+//       ["ABC", 65],
+//       ["HGR", 74],
+//       ["BYHT", 74],
+//     ],
+//     2
+//   )
+// );
+console.log(
+  bingo(
+    [
+      ["LC", 72],
+      ["DIOLOH", 80],
+      ["FNUBW", 78],
+      ["YEEI", 74],
+      ["GGOUZM", 78],
+      ["VNLMRQNL", 69],
+    ],
+    2
+  )
+);
