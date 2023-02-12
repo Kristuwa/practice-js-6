@@ -1899,46 +1899,92 @@
 // }
 
 // console.log(toWeirdCase("This is a test"));
-function bingo(ticket, win) {
-  const myWin = ticket.reduce((acc, item) => {
-    const numbersOfletter = item[0]
-      .split("")
-      .map((letter) => letter.charCodeAt(0));
+// function bingo(ticket, win) {
+//   const myWin = ticket.reduce((acc, item) => {
+//     const numbersOfletter = item[0]
+//       .split("")
+//       .map((letter) => letter.charCodeAt(0));
 
-    if (numbersOfletter.includes(item[1])) {
-      acc += 1;
-    }
-    acc += 0;
-    return acc;
-  }, 0);
-  console.log(myWin);
-  if (myWin >= win) {
-    return "Winner!";
-  } else {
-    return "Loser!";
-  }
-}
+//     if (numbersOfletter.includes(item[1])) {
+//       acc += 1;
+//     }
+//     acc += 0;
+//     return acc;
+//   }, 0);
+//   console.log(myWin);
+//   if (myWin >= win) {
+//     return "Winner!";
+//   } else {
+//     return "Loser!";
+//   }
+// }
 
+// // console.log(
+// //   bingo(
+// //     [
+// //       ["ABC", 65],
+// //       ["HGR", 74],
+// //       ["BYHT", 74],
+// //     ],
+// //     2
+// //   )
+// // );
 // console.log(
 //   bingo(
 //     [
-//       ["ABC", 65],
-//       ["HGR", 74],
-//       ["BYHT", 74],
+//       ["LC", 72],
+//       ["DIOLOH", 80],
+//       ["FNUBW", 78],
+//       ["YEEI", 74],
+//       ["GGOUZM", 78],
+//       ["VNLMRQNL", 69],
 //     ],
 //     2
 //   )
 // );
-console.log(
-  bingo(
-    [
-      ["LC", 72],
-      ["DIOLOH", 80],
-      ["FNUBW", 78],
-      ["YEEI", 74],
-      ["GGOUZM", 78],
-      ["VNLMRQNL", 69],
-    ],
-    2
-  )
-);
+
+function check(str, bracketsConfig) {
+  // your solution
+  console.log(str);
+  console.log(bracketsConfig);
+  if (typeof str !== "string") {
+    return false;
+  }
+
+  const brackets = bracketsConfig.flat();
+  let open = [];
+  let close = [];
+
+  for (let i = 0; i < brackets.length; i += 1) {
+    if (i % 2 === 0) {
+      open.push(brackets[i]);
+    } else {
+      close.push(brackets[i]);
+    }
+  }
+  const chars = str.split("");
+  let stack = [];
+  // Проходимся по строке, проверяя каждый ее символ (п.4).
+  for (let i = 0; i < chars.length; i += 1) {
+    let openIndex = open.indexOf(chars[i]);
+    if (openIndex !== -1) {
+      // Нашли открывающую скобку. Помещаем ее в стек (п.2).
+      stack.push(chars[i]);
+      continue;
+    }
+    let closeIndex = close.indexOf(chars[i]);
+    if (closeIndex === openIndex) {
+      openIndex = stack.pop();
+    } else {
+      return false;
+    }
+  }
+
+  console.log(stack);
+  // Проверяем дисбаланс открытых/закрытых скобок (п.5).
+  if (stack.length !== 0) {
+    return false;
+  }
+
+  return true;
+}
